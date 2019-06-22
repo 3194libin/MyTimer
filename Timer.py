@@ -3,6 +3,7 @@ import time as t
 class MyTimer:
 
     def __init__(self):
+        self.unit = ['年','月','天','时','分','秒']
         self.prompt = '未开始计时'
         self.lasted = []
         self.begin = 0
@@ -27,6 +28,5 @@ class MyTimer:
         self.prompt = '总共运行了'
         for index in range(6):
             self.lasted.append(self.stop[index] - self.begin[index])
-            self.prompt += str(self.lasted[index])
-
-
+            if self.lasted[index]:
+                self.prompt += str(self.lasted[index])+self.unit[index]
