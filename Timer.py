@@ -16,12 +16,16 @@ class MyTimer:
 
     def start(self):
         self.begin = t.localtime()
+        self.prompt = '提示：请先调用stop()停止计时'
         print('计时开始。。。')
 
     def stop(self):
-        self.stop = t.localtime()
-        self.calc()
-        print('计时结束！')
+        if not self.begin:
+            print("提示：请先调用start()开始计时")
+        else:
+            self.stop = t.localtime()
+            self.calc()
+            print('计时结束！')
 
     def calc(self):
         self.lasted = []
@@ -30,3 +34,5 @@ class MyTimer:
             self.lasted.append(self.stop[index] - self.begin[index])
             if self.lasted[index]:
                 self.prompt += str(self.lasted[index])+self.unit[index]
+        self.begin = 0
+        self.end = 0
